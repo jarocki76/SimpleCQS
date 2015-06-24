@@ -1,14 +1,20 @@
 ﻿<?xml version="1.0"?>
-<package >
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>SimpleCQS</id>
     <version>$version$</version>
     <authors>jarocki76</authors>
     <owners>jarocki76</owners>
     <projectUrl>https://github.com/jarocki76/SimpleCQS</projectUrl>
-    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Simple command query separation</description>
     <copyright>Copyright 2015</copyright>
     <tags>SimpleCQS</tags>
-  </metadata>
+    <dependencies>
+      <dependency id="FluentValidation" version="5.6.2.0" />
+    </dependencies>
+    <files>
+      <file src="..\bin\SimpleCQS.dll" target="lib" />
+    </files>
+    </metadata>
 </package>
