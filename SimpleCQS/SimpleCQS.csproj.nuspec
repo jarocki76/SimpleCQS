@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>SimpleCQS</id>
+    <version>$version$</version>
+    <authors>jarocki76</authors>
+    <owners>jarocki76</owners>
+    <projectUrl>https://github.com/jarocki76/SimpleCQS</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Simple command query separation</description>
+    <copyright>Copyright 2015</copyright>
+    <tags>SimpleCQS</tags>
+  </metadata>
+</package>
