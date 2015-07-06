@@ -1,7 +1,8 @@
-# SimpleCQS
+# SimpleCQS [![Build status](https://ci.appveyor.com/api/projects/status/aneojew2ehsgaijo/branch/master?retina=true)](https://ci.appveyor.com/project/JarosawLeszczyski/simplecqs/branch/master)
+
 Library to simple command query separation
 
-<img ng-src="https://ci.appveyor.com/api/projects/status/aneojew2ehsgaijo?svg=true" src="https://ci.appveyor.com/api/projects/status/aneojew2ehsgaijo?svg=true">
+
 
 # NuGet
 ```
@@ -56,7 +57,9 @@ var container = builder.Build();
 ```
 ###### Program
 ```
-var commandBus = container.Resolve<ICommandDispatcher>();
+var commandBus = container.Resolve<ICommandExecutor>(); //Executor with validation result
+//var commandBus = container.Resolve<ICommandDispatcher>(); //Dispather with validation
+//var commandBus = container.ResolveNamed<ICommandDispatcher>("SimpleDispatcher") //Dispather without validation;
 
 var command = new MyCommand()
 {
@@ -64,5 +67,6 @@ var command = new MyCommand()
   CommandProp2 = 1
 };
 
-commandBus.Dispatch(command);
+var validationResult = commandBus.Execute(command) //for Executor with validation result;
+//commandBus.Dispatch(command); //for Dispatcher with and without validation
 ```
