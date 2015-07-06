@@ -11,8 +11,7 @@ Install-Package SimpleCQS
 # Simple Example with Autofac
 
 ```
-Install-Package SimpleCQS
-Install-Package Autofac
+Install-Package SimpleCQS.Autofac
 ```
 ###### Commands and Handlers
 ```
@@ -25,26 +24,34 @@ public class MyCommand : ICommand
   
 public class MyCommandHandler : ICommandHandler<MyCommand>
 {
+  public MyCommandHandler( /* dependencies */)
+  {
+  }
+
   public void Handle(MyCommand command)
   {
-    //DoSomething
+    //do something with command
+  }
+}
+
+public class MyCommandValidator : AbstractValidator<MyCommand>
+{
+  public MyCommandValidator()
+  {
+    RuleFor(x => x.CommandProp1)
+      .NotEmpty();
+
+    RuleFor(x => x.CommandProp2)
+      .GreaterThan(0);
+
+    //(...)
   }
 }
 ```
 ###### Autofac configuration
 ```
 var builder = new ContainerBuilder();
-builder.Register(ctx =>
-{
-  var c = ctx.Resolve<IComponentContext>();
-  Func<Type, object> resolver = c.Resolve;
-  return resolver;
-}).As<Func<Type, object>>().SingleInstance();
-builder.RegisterType<CommandDispatcher>()
-  .As<ICommandDispatcher>()
-  .SingleInstance();
-builder.RegisterAssemblyTypes(AppDomain.CurrentDomain.GetAssemblies())
-  .AsClosedTypesOf(typeof(ICommandHandler<>));
+builder.RegisterSimpleCQS(AppDomain.CurrentDomain.GetAssemblies());
 var container = builder.Build();
 ```
 ###### Program
