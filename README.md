@@ -11,9 +11,10 @@ Install-Package SimpleCQS
 # Simple Example with Autofac
 
 ```
+Install-Package SimpleCQS
 Install-Package Autofac
 ```
-
+###### Commands and Handlers
 ```
 public class MyCommand : ICommand
 {
@@ -29,23 +30,25 @@ public class MyCommandHandler : ICommandHandler<MyCommand>
     //DoSomething
   }
 }
-
-//Run
+```
+###### Autofac configuration
+```
 var builder = new ContainerBuilder();
-    
 builder.Register(ctx =>
 {
   var c = ctx.Resolve<IComponentContext>();
   Func<Type, object> resolver = c.Resolve;
   return resolver;
 }).As<Func<Type, object>>().SingleInstance();
-
-builder.RegisterType<CommandDispatcher>().As<ICommandDispatcher>().SingleInstance();
+builder.RegisterType<CommandDispatcher>()
+  .As<ICommandDispatcher>()
+  .SingleInstance();
 builder.RegisterAssemblyTypes(AppDomain.CurrentDomain.GetAssemblies())
   .AsClosedTypesOf(typeof(ICommandHandler<>));
-      
 var container = builder.Build();
-
+```
+###### Program
+```
 var commandBus = container.Resolve<ICommandDispatcher>();
 
 var command = new MyCommand()
@@ -55,5 +58,4 @@ var command = new MyCommand()
 };
 
 commandBus.Dispatch(command);
-  
 ```
