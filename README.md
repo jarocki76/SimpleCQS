@@ -14,7 +14,7 @@ Install-Package SimpleCQS
 ```
 Install-Package SimpleCQS.Autofac
 ```
-###### Commands and Handlers
+###### Commands and Handlers and Validators
 ```
 public class MyCommand : ICommand
 {
@@ -52,7 +52,7 @@ public class MyCommandValidator : AbstractValidator<MyCommand>
 ###### Autofac configuration
 ```
 var builder = new ContainerBuilder();
-builder.RegisterSimpleCQS(AppDomain.CurrentDomain.GetAssemblies());
+builder.RegisterSimpleCQS(AppDomain.CurrentDomain.GetAssemblies()); //Assemblies with handlers and validators
 var container = builder.Build();
 ```
 ###### Program
