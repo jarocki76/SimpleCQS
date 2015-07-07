@@ -15,6 +15,6 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="..\bin\SimpleCQS.dll" target="lib" />
+    <file src="..\..\bin\SimpleCQS.dll" target="lib" />
   </files>
 </package>
