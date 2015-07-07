@@ -55,7 +55,7 @@ var builder = new ContainerBuilder();
 builder.RegisterSimpleCQS(AppDomain.CurrentDomain.GetAssemblies()); //Assemblies with handlers or validators
 var container = builder.Build();
 ```
-###### Program
+###### Usage
 ```
 var commandBus = container.Resolve<ICommandExecutor>(); //Executor with validation result
 //var commandBus = container.Resolve<ICommandDispatcher>(); //Dispather with validation
