@@ -14,7 +14,4 @@
       <dependency id="FluentValidation" version="5.6.2.0" />
     </dependencies>
   </metadata>
-  <files>
-    <file src="..\..\bin\SimpleCQS.dll" target="lib" />
-  </files>
 </package>
