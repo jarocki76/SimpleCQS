@@ -1,6 +1,6 @@
 # SimpleCQS [![Build status](https://ci.appveyor.com/api/projects/status/aneojew2ehsgaijo/branch/master?retina=true)](https://ci.appveyor.com/project/JarosawLeszczyski/simplecqs/branch/master)
 
-Library to simple command query separation
+Library for simple command query separation
 
 
 
@@ -52,7 +52,7 @@ public class MyCommandValidator : AbstractValidator<MyCommand>
 ###### Autofac configuration
 ```
 var builder = new ContainerBuilder();
-builder.RegisterSimpleCQS(AppDomain.CurrentDomain.GetAssemblies()); //Assemblies with handlers and validators
+builder.RegisterSimpleCQS(AppDomain.CurrentDomain.GetAssemblies()); //Assemblies with handlers or validators
 var container = builder.Build();
 ```
 ###### Program
@@ -67,6 +67,6 @@ var command = new MyCommand()
   CommandProp2 = 1
 };
 
-var validationResult = commandBus.Execute(command) //for Executor with validation result;
-//commandBus.Dispatch(command); //for Dispatcher with and without validation
+var validationResult = commandBus.Execute(command) //Executor with validation result;
+//commandBus.Dispatch(command); //Dispatcher with and without validation
 ```
